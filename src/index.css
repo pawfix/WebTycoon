@@ -1,0 +1,28 @@
+.loader {
+  position: fixed;
+  bottom: 10vh;
+  left: 5vw;
+  right: 5vw;
+  width: 90vw;
+  height: 10vh;
+  background-color: #000;
+}
+
+.moving-block {
+  width: 5vw;
+  height: 10vh;
+  background: red;
+  position: relative;
+  animation: moveLeft 5s linear forwards;
+}
+
+@keyframes moveLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-75vw);
+  }
+}
+
+/*# sourceMappingURL=index.css.map */
