@@ -1,4 +1,4 @@
-import { getBlock } from "./data/cash.ts";
+import {getBlock} from "./data/cash.ts";
 
 function addMovingBlock(): void {
     const loader = document.getElementById("loader");

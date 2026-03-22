@@ -16,7 +16,7 @@ function buyItem(item:string, price: number):boolean {
     console.log("Trying to buy: " + item);
     switch (item) {
         case "Multi":
-            if (price < balance) {
+            if (price <= balance) {
                 applyBuyItemCash(price)
                 applyBuyItemItem(item)
                 console.log(item)

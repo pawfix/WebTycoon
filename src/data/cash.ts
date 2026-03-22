@@ -4,7 +4,7 @@ import {Multi} from "./shop.ts";
 export let balance:number = 0;
 export let gears:number = 0;
 
-export function getBlock(value:number, type:String):void {
+export function getBlock(value:number, type:string):void {
     switch (type) {
         case "Gears":
             addGears(value);
