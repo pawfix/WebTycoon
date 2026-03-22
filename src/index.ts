@@ -11,10 +11,19 @@ function addMovingBlock(): void {
 
     block.id = String(createBlockValue())
 
+    const typeValue:number = createBlockType()
+    if (typeValue <= 25) {
+        block.innerText = "Gears"
+    } else if (typeValue > 25) {
+        block.innerText = "Balance"
+    } else {
+        console.log(`Wrong block type: ${typeValue}`);
+    }
+
     loader?.appendChild(block);
 
     setTimeout((): void => {
-        getBlock(Number(block.id));
+        getBlock(Number(block.id), block.innerText);
         block.remove();
     }, 5000);
 }
@@ -31,10 +40,12 @@ function processQueue(): void {
 
     queueWaiting--;
     addMovingBlock();
-
+    displayQueue()
     setTimeout(processQueue, 400);
 }
-
+function createBlockType():number {
+    return Math.floor((Math.random() * 100) + 1);
+}
 function createBlockValue():number {
     return Math.floor((Math.random() * 5) + 1);
 }
@@ -48,10 +59,14 @@ function addToQueue(): void {
 
 document.getElementById("tempButton")?.addEventListener('click', () => {
     queueWaiting++;
+    displayQueue()
+    //console.log(queueWaiting);
+    addToQueue();
+})
+
+function displayQueue(): void {
     const queueDisplay:HTMLElement | null = document.getElementById("queueWaiting");
     if (queueDisplay) {
         queueDisplay.innerText = String(queueWaiting);
     }
-    //console.log(queueWaiting);
-    addToQueue();
-})
+}

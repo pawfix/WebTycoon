@@ -1,12 +1,21 @@
 .loader {
   position: fixed;
   bottom: 10vh;
-  left: 5vw;
-  right: 5vw;
+  left: 7.5vw;
+  right: 2.5vw;
   width: 90vw;
   height: 10vh;
   background-color: #000;
 }
+.collector {
+  position: fixed;
+  bottom: 10vh;
+  left: 2.5vw;
+  width: 5vw;
+  height: 10vh;
+  background-color: yellow;
+}
+
 .moving-block {
   width: 5vw;
   height: 10vh;
@@ -20,6 +29,11 @@
     transform: translateX(0);
   }
   to {
-    transform: translateX(-75vw);
+    transform:translateX(-90vw);
   }
+}
+div.shop div{
+  border: 5px solid black;
+  border-radius: 10px;
+  padding: 2px;
 }

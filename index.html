@@ -10,10 +10,32 @@
   <header>
     <h1>Tycoon</h1>
     <p>Balance: <span id="userBalanceDisplay">0</span></p>
+    <p>Gears: <span id="userGridDisplay">0</span></p>
     <p>In queue: <span id="queueWaiting">0</span></p>
-  </header>
-  <button type="button" id="tempButton" >Queue Waiting</button>
+    </header>
+
+  <div class="shop" id="shopDiv">
+    <div class="shopDiv" id="shopDiv1">
+      <p>Buy: Multi</p>
+      <p>For: $100</p>
+    </div>
+    <div class="shopDiv" id="shopDiv2">
+      <p>Buy: Power</p>
+      <p>For: $100</p>
+    </div>
+    <div class="shopDiv" id="shopDiv3">
+      <p>Buy: Auto</p>
+      <p>For: $100</p>
+    </div>
+    <div class="shopDiv" id="shopDiv4">
+      <p>Buy: Temp</p>
+      <p>For: $100</p>
+    </div>
+  </div>
+    <button type="button" id="tempButton" >Queue Waiting</button>
+    <div class="collector" id="collector"></div>  
     <div class="loader" id="loader"></div>
     <script type="module" src="/src/index.ts"></script>
+  <script type="module" src="/src/shop.ts"></script>
   </body>
 </html>
