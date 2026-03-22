@@ -8,7 +8,7 @@ let shopDivs:NodeListOf<HTMLElement> = document.querySelectorAll('.shopDiv')
 shopDivs.forEach((element:HTMLElement) => {
     element.addEventListener("click", () => {
         console.log(element.children[0].innerHTML.slice(5));
-        buyItem(element.children[0].innerHTML.slice(5), Number(element.children[1].innerHTML.slice(6)))
+        buyItem(element.dataset.itemtype!, Number(element.dataset.price!));
     })
 })
 

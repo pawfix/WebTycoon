@@ -9,21 +9,29 @@ function addMovingBlock(): void {
     block.style.position = "absolute";
     block.style.right = "0vw"
 
-    block.id = String(createBlockValue())
+    block.dataset.blockValue! = String(createBlockValue())
 
     const typeValue:number = createBlockType()
     if (typeValue <= 25) {
-        block.innerText = "Gears"
+        block.dataset.blockType! = "Gears"
     } else if (typeValue > 25) {
-        block.innerText = "Balance"
+        block.dataset.blockType! = "Balance"
     } else {
         console.log(`Wrong block type: ${typeValue}`);
+    }
+
+    if (block.dataset.blockType! === "Gears") {
+        block.style.backgroundColor = "red";
+    } else if (block.dataset.blockType! === "Balance") {
+        block.style.backgroundColor = "green";
+    } else {
+        console.log(`Wrong block type: ${block.dataset.blockType!}`);
     }
 
     loader?.appendChild(block);
 
     setTimeout((): void => {
-        getBlock(Number(block.id), block.innerText);
+        getBlock(Number(block.dataset.blockValue!), block.dataset.blockType!);
         block.remove();
     }, 5000);
 }
