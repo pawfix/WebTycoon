@@ -19,3 +19,9 @@ export function updateDisplayValue(target: ResourceType) {
             break;
     }
 }
+export function displayQueue(queue: number): void {
+    const el = document.getElementById("queueWaiting");
+    if (el) {
+        el.innerText = String(queue);
+    }
+}

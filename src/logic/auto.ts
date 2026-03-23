@@ -1,6 +1,5 @@
 import {Auto, AutoSpeed} from "../data/shop.ts";
-import {increaseQueue} from "../index.ts";
-
+import { increaseQueue} from "./queue.ts";
 
 export function autoAddToQuery():void {
     setTimeout(() => {
