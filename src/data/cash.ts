@@ -21,6 +21,15 @@ export function getBlock(value: number, type: ResourceType): void {
     //console.log(balance);
 }
 
+export function trySpend(amount: number): boolean {
+    if (balance >= amount) {
+        balance -= amount;
+        updateDisplayValue("Gears")
+        return true;
+    }
+    return false;
+}
+
 function addBalance(value: number): void {
     balance += value * Multi;
     updateDisplayValue("Balance")
