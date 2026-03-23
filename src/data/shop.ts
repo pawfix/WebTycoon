@@ -2,7 +2,7 @@ import type {ShopItem} from "./types.ts";
 
 export let Multi: number = 1;
 export let Power: number = 1;
-export let Auto: number = 0;
+export let Auto: number = 5;
 export let AutoSpeed:number = 10
 export let MoveSpeed: number = 5;
 export let ProcessSpeed: number = 4;

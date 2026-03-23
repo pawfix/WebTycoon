@@ -1,9 +1,14 @@
-import {increaseQueue} from "../index.ts";
 import {Auto, AutoSpeed} from "../data/shop.ts";
+import {increaseQueue} from "../index.ts";
 
-setTimeout(autoAddToQuery, AutoSpeed * 1000)
 
-function autoAddToQuery():void {
-    increaseQueue(Auto)
-    debugger
+export function autoAddToQuery():void {
+    setTimeout(() => {
+        if (Auto > 0) {
+            increaseQueue(Auto);
+            console.log("Added to queue")
+        }
+        console.log("test")
+        autoAddToQuery()
+    }, AutoSpeed * 1000)
 }

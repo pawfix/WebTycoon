@@ -1,6 +1,7 @@
 import {getBlock} from "./data/cash.ts";
 import {isResourceType} from "./data/types.ts";
-import {MoveSpeed, Power} from "./data/shop.ts";
+import {MoveSpeed, Power, ProcessSpeed} from "./data/shop.ts";
+import { autoAddToQuery } from "./logic/auto.ts";
 
 function addMovingBlock(): void {
     const loader = document.getElementById("loader");
@@ -46,11 +47,6 @@ function addMovingBlock(): void {
 }
 
 let queueWaiting: number = 0;
-
-export function increaseQueue(amount:number):void {
-    queueWaiting += amount;
-}
-
 let isProcessing = false;
 
 function processQueue(): void {
@@ -62,7 +58,7 @@ function processQueue(): void {
     queueWaiting--;
     addMovingBlock();
     displayQueue()
-    setTimeout(processQueue, 400);
+    setTimeout(processQueue, ProcessSpeed * 100);
 }
 
 function createBlockType(): number {
@@ -87,9 +83,21 @@ document.getElementById("tempButton")?.addEventListener('click', () => {
     addToQueue();
 })
 
+export function increaseQueue(amount:number): void {
+    queueWaiting += amount;
+    displayQueue()
+    processQueue()
+}
+
 function displayQueue(): void {
     const queueDisplay: HTMLElement | null = document.getElementById("queueWaiting");
     if (queueDisplay) {
         queueDisplay.innerText = String(queueWaiting);
     }
 }
+
+function init():void {
+autoAddToQuery()
+}
+
+init()
