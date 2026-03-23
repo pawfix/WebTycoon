@@ -4,12 +4,12 @@ import {applyBuyItemCash, balance} from "../data/cash.ts";
 import {applyBuyItemItem, isShopItem} from "../data/shop.ts";
 import type {ShopItem} from "../data/types.ts";
 
-let shopDivs:NodeListOf<HTMLElement> = document.querySelectorAll('.shopDiv')
+let shopDivs: NodeListOf<HTMLElement> = document.querySelectorAll('.shopDiv')
 
-shopDivs.forEach((element:HTMLElement) => {
+shopDivs.forEach((element: HTMLElement) => {
     element.addEventListener("click", () => {
 
-        const shopItem:string = element.dataset.itemtype!
+        const shopItem: string = element.dataset.itemtype!
 
         if (!shopItem || !isShopItem(shopItem)) {
             console.error("Wrong shop item type!" + shopItem);
@@ -18,7 +18,7 @@ shopDivs.forEach((element:HTMLElement) => {
 
         if (buyItem(shopItem, Number(element.dataset.price!))) {
             return;
-        } else  {
+        } else {
             element.style.animation = "failToBuyBlink 2s"
             setTimeout(() => {
                 element.style.animation = ""
@@ -27,7 +27,7 @@ shopDivs.forEach((element:HTMLElement) => {
     })
 })
 
-function buyItem(item:ShopItem, price: number):boolean {
+function buyItem(item: ShopItem, price: number): boolean {
     console.log("Trying to buy: " + item);
     switch (item) {
         case "Multi":
@@ -82,7 +82,7 @@ function buyItem(item:ShopItem, price: number):boolean {
                 return false;
             }
         default:
-                console.error("Unknown item type " + item);
-                return false;
+            console.error("Unknown item type " + item);
+            return false;
     }
 }

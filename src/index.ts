@@ -1,6 +1,6 @@
 import {getBlock} from "./data/cash.ts";
 import {isResourceType} from "./data/types.ts";
-import {Power, MoveSpeed} from "./data/shop.ts";
+import {MoveSpeed, Power} from "./data/shop.ts";
 
 function addMovingBlock(): void {
     const loader = document.getElementById("loader");
@@ -14,7 +14,7 @@ function addMovingBlock(): void {
 
     block.dataset.blockValue! = String(createBlockValue())
 
-    const typeValue:number = createBlockType()
+    const typeValue: number = createBlockType()
     if (typeValue <= 25) {
         block.dataset.blockType! = "Gears"
     } else if (typeValue > 25) {
@@ -60,10 +60,12 @@ function processQueue(): void {
     displayQueue()
     setTimeout(processQueue, 400);
 }
-function createBlockType():number {
+
+function createBlockType(): number {
     return Math.floor((Math.random() * 100) + 1);
 }
-function createBlockValue():number {
+
+function createBlockValue(): number {
     return Math.floor((Math.random() * 5) + 1);
 }
 
@@ -82,7 +84,7 @@ document.getElementById("tempButton")?.addEventListener('click', () => {
 })
 
 function displayQueue(): void {
-    const queueDisplay:HTMLElement | null = document.getElementById("queueWaiting");
+    const queueDisplay: HTMLElement | null = document.getElementById("queueWaiting");
     if (queueDisplay) {
         queueDisplay.innerText = String(queueWaiting);
     }

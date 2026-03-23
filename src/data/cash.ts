@@ -1,12 +1,12 @@
-import { updateDisplayValue } from "../ui/display.ts";
+import {updateDisplayValue} from "../ui/display.ts";
 import "./shop.ts"
 import {Multi} from "./shop.ts";
 import type {ResourceType} from "./types.ts";
 
-export let balance:number = 0;
-export let gears:number = 0;
+export let balance: number = 0;
+export let gears: number = 0;
 
-export function getBlock(value:number, type:ResourceType):void {
+export function getBlock(value: number, type: ResourceType): void {
     switch (type) {
         case "Gears":
             addGears(value);
@@ -21,18 +21,18 @@ export function getBlock(value:number, type:ResourceType):void {
     //console.log(balance);
 }
 
-function addBalance(value:number):void {
+function addBalance(value: number): void {
     balance += value * Multi;
     updateDisplayValue("Balance")
 }
-function addGears(value:number):void {
+
+function addGears(value: number): void {
     gears += value * Multi;
     updateDisplayValue("Gears")
 }
 
 
-
-export function applyBuyItemCash(value: number):void {
+export function applyBuyItemCash(value: number): void {
     balance -= value * Multi;
     updateDisplayValue("Balance")
 }
