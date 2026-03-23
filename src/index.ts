@@ -47,6 +47,10 @@ function addMovingBlock(): void {
 
 let queueWaiting: number = 0;
 
+export function increaseQueue(amount:number):void {
+    queueWaiting += amount;
+}
+
 let isProcessing = false;
 
 function processQueue(): void {
