@@ -1,11 +1,12 @@
 import { updateDisplayValue } from "../ui/display.ts";
 import "./shop.ts"
 import {Multi} from "./shop.ts";
+import type {ResourceType} from "./types.ts";
 
 export let balance:number = 0;
 export let gears:number = 0;
 
-export function getBlock(value:number, type:string):void {
+export function getBlock(value:number, type:ResourceType):void {
     switch (type) {
         case "Gears":
             addGears(value);

@@ -1,6 +1,7 @@
 import {balance, gears} from "../data/cash.ts";
+import type {ResourceType} from "../data/types.ts";
 
-export function updateDisplayValue(target: string) {
+export function updateDisplayValue(target: ResourceType) {
     switch (target) {
         case "Gears":
             const userGridDisplay:HTMLElement | null = document.getElementById("userGridDisplay");

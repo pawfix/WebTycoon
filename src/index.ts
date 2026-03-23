@@ -1,4 +1,6 @@
 import {getBlock} from "./data/cash.ts";
+import {isResourceType} from "./data/types.ts";
+import {Power, MoveSpeed} from "./data/shop.ts";
 
 function addMovingBlock(): void {
     const loader = document.getElementById("loader");
@@ -8,6 +10,7 @@ function addMovingBlock(): void {
     block.style.display = "block";
     block.style.position = "absolute";
     block.style.right = "0vw"
+    block.style.animation = `moveLeft ${MoveSpeed}s linear forwards`
 
     block.dataset.blockValue! = String(createBlockValue())
 
@@ -31,9 +34,15 @@ function addMovingBlock(): void {
     loader?.appendChild(block);
 
     setTimeout((): void => {
-        getBlock(Number(block.dataset.blockValue!), block.dataset.blockType!);
+        const typeRaw = block.dataset.blockType!;
+        if (!typeRaw || !isResourceType(typeRaw)) {
+            console.error("Unknown type" + typeRaw);
+            return;
+        }
+
+        getBlock(Number(block.dataset.blockValue!), typeRaw);
         block.remove();
-    }, 5000);
+    }, (MoveSpeed * 1000));
 }
 
 let queueWaiting: number = 0;
@@ -66,7 +75,7 @@ function addToQueue(): void {
 }
 
 document.getElementById("tempButton")?.addEventListener('click', () => {
-    queueWaiting++;
+    queueWaiting += Power;
     displayQueue()
     //console.log(queueWaiting);
     addToQueue();
