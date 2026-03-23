@@ -3,7 +3,7 @@ import "./shop.ts"
 import {Multi} from "./shop.ts";
 import type {ResourceType} from "./types.ts";
 
-export let balance: number = 90;
+export let balance: number = 0;
 export let gears: number = 0;
 
 export function getBlock(value: number, type: ResourceType): void {
