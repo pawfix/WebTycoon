@@ -3,7 +3,7 @@ import "./shop.ts"
 import {Multi} from "./shop.ts";
 import type {ResourceType} from "./types.ts";
 
-export let balance: number = 0;
+export let balance: number = 500;
 export let gears: number = 0;
 
 export function getBlock(value: number, type: ResourceType): void {
@@ -21,11 +21,24 @@ export function getBlock(value: number, type: ResourceType): void {
     //console.log(balance);
 }
 
-export function trySpend(amount: number): boolean {
-    if (balance >= amount) {
-        balance -= amount;
-        updateDisplayValue("Gears")
-        return true;
+export function trySpend(amount: number, type: ResourceType): boolean {
+    switch (type) {
+        case "Gears":
+            if (gears >= amount) {
+                gears -= amount;
+                updateDisplayValue("Gears")
+                return true;
+            }
+            break;
+        case "Balance":
+            if (balance >= amount) {
+                balance -= amount;
+                updateDisplayValue("Gears")
+                return true;
+            }
+            break;
+            default:
+                return false;
     }
     return false;
 }

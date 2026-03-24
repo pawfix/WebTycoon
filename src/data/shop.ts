@@ -14,7 +14,7 @@ export function isShopItem(item: string): item is ShopItem {
 export function applyBuyItemItem(item: ShopItem): void {
     switch (item) {
         case "Multi":
-            Multi++;
+            Multi += .25;
             break;
         case "Auto":
             Auto++;

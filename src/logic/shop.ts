@@ -2,7 +2,7 @@ import "../data/cash.ts"
 import {trySpend} from "../data/cash.ts";
 import "../data/shop.ts"
 import {applyBuyItemItem, isShopItem} from "../data/shop.ts";
-import type {ShopItem} from "../data/types.ts";
+import {isResourceType, type ResourceType, type ShopItem} from "../data/types.ts";
 
 let shopDivs: NodeListOf<HTMLElement> = document.querySelectorAll('.shopDiv')
 let isPaymentProcessing: boolean = false;
@@ -13,8 +13,6 @@ shopDivs.forEach((element: HTMLElement) => {
         if (isPaymentProcessing) return;
 
         isPaymentProcessing = true;
-
-        tryToBuyItem(element);
 
         element.style.pointerEvents = "none";
 
@@ -32,13 +30,23 @@ shopDivs.forEach((element: HTMLElement) => {
 
 function tryToBuyItem(element:HTMLElement) {
     const shopItem: string = element.dataset.itemtype!
+    const currency = element.dataset.currency as ResourceType;
+
+    console.log(Number(element.dataset.price));
+
 
     if (!shopItem || !isShopItem(shopItem)) {
         console.error("Wrong shop item type!" + shopItem);
         return;
     }
+    if (!currency || !isResourceType(currency)) {
+        console.error("Wrong currency: " + currency);
+        return;
+    }
 
-    if (buyItem(shopItem, Number(element.dataset.price!))) {
+
+
+    if (buyItem(shopItem, Number(element.dataset.price!), currency)) {
         return;
     } else {
         element.style.animation = "failToBuyBlink 2s"
@@ -48,9 +56,9 @@ function tryToBuyItem(element:HTMLElement) {
     }
 }
 
-function buyItem(item: ShopItem, price: number): boolean {
-    if (!trySpend(price)) {
-        console.log("Too poor to buy: " + item);
+function buyItem(item: ShopItem, price: number, currency: ResourceType): boolean {
+    if (!trySpend(price, currency)) {
+        console.log(`Too poor to buy ${item} for ${price} of ${currency}`);
         return false;
     }
 
