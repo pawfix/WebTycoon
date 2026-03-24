@@ -1,8 +1,8 @@
 import "../data/cash.ts"
 import {trySpend} from "../data/cash.ts";
 import "../data/shop.ts"
-import {applyBuyItemItem, isShopItem} from "../data/shop.ts";
-import {isResourceType, type ResourceType, type ShopItem} from "../data/types.ts";
+import {applyBuyItemItem} from "../data/shop.ts";
+import {isResourceType, isShopItem, type ResourceType, type ShopItem} from "../data/types.ts";
 
 let shopDivs: NodeListOf<HTMLElement> = document.querySelectorAll('.shopDiv')
 let isPaymentProcessing: boolean = false;

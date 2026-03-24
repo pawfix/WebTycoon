@@ -3,24 +3,19 @@ import "./shop.ts"
 import {Multi} from "./shop.ts";
 import type {ResourceType} from "./types.ts";
 
+/*
+Here the cash related data stored.
+Stuff like gears and balance are set and edited here
+Also contains checks
+*/
+
+// User balance and gear amount. Used in shop etc
 export let balance: number = 500;
 export let gears: number = 0;
 
-export function getBlock(value: number, type: ResourceType): void {
-    switch (type) {
-        case "Gears":
-            addGears(value);
-            break;
-        case "Balance":
-            addBalance(value);
-            break;
-        default:
-            console.log("Wrong type " + type);
-
-    }
-    //console.log(balance);
-}
-
+// Check if user can spend.
+// If yes, spend the amount of a specified resource, update its display and return true;
+// If no, return false
 export function trySpend(amount: number, type: ResourceType): boolean {
     switch (type) {
         case "Gears":
@@ -43,18 +38,21 @@ export function trySpend(amount: number, type: ResourceType): boolean {
     return false;
 }
 
-function addBalance(value: number): void {
+// Way for other files to modify the balance
+export function addBalance(value: number): void {
     balance += value * Multi;
     updateDisplayValue("Balance")
 }
 
-function addGears(value: number): void {
+// Way for other files to modify the gears
+export function addGears(value: number): void {
     gears += value * Multi;
     updateDisplayValue("Gears")
 }
 
-
+/*
 export function applyBuyItemCash(value: number): void {
     balance -= value * Multi;
     updateDisplayValue("Balance")
 }
+*/

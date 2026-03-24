@@ -1,10 +1,50 @@
-import { getBlock } from "../data/cash";
 import {isResourceType, type ResourceType} from "../data/types";
 import { MoveSpeed } from "../data/shop";
+import {addBalance, addGears} from "../data/cash.ts";
 
+/*
+    Logic for the block
+    Creates it and sets it values, to be later read.
+ */
+
+// gets the block and depending on its type it adds the amount of VALUE to the currency
+export function getBlock(value: number, type: ResourceType): void {
+    switch (type) {
+        case "Gears":
+            addGears(value);
+            break;
+        case "Balance":
+            addBalance(value);
+            break;
+        default:
+            console.log("Wrong type " + type);
+
+    }
+}
+
+// Create the moving block
 export function addMovingBlock(): void {
     const loader = document.getElementById("loader");
 
+    const block = createTheBlock()
+
+    loader?.appendChild(block);
+
+    setTimeout(() => {
+        const typeRaw = block.dataset.blockType;
+
+        if (!typeRaw || !isResourceType(typeRaw)) {
+            console.error("Unknown type " + typeRaw);
+            return;
+        }
+
+        getBlock(Number(block.dataset.blockValue), typeRaw);
+        block.remove();
+    }, MoveSpeed * 1000);
+}
+
+// Create the actual block with its data and styling
+function createTheBlock(): HTMLElement {
     const block = document.createElement("div");
     block.classList.add("moving-block");
     block.style.position = "absolute";
@@ -22,26 +62,15 @@ export function addMovingBlock(): void {
         block.dataset.blockType = "Balance" as ResourceType;
         block.style.backgroundColor = "green";
     }
-
-    loader?.appendChild(block);
-
-    setTimeout(() => {
-        const typeRaw = block.dataset.blockType;
-
-        if (!typeRaw || !isResourceType(typeRaw)) {
-            console.error("Unknown type " + typeRaw);
-            return;
-        }
-
-        getBlock(Number(block.dataset.blockValue), typeRaw);
-        block.remove();
-    }, MoveSpeed * 1000);
+    return block;
 }
 
+// Create a type for the block by geting a number 0 - 100
 function createBlockType(): number {
     return Math.floor(Math.random() * 100 + 1);
 }
 
+// Create a value for the block
 function createBlockValue(): number {
     return Math.floor(Math.random() * 5 + 1);
 }

@@ -1,6 +1,7 @@
 import {balance, gears} from "../data/cash.ts";
 import type {ResourceType} from "../data/types.ts";
 
+// Update the value of users cash
 export function updateDisplayValue(target: ResourceType) {
     switch (target) {
         case "Gears":
@@ -19,6 +20,8 @@ export function updateDisplayValue(target: ResourceType) {
             break;
     }
 }
+
+// Update the displayed value of the queue
 export function displayQueue(queue: number): void {
     const el = document.getElementById("queueWaiting");
     if (el) {

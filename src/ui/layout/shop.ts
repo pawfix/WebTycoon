@@ -2,6 +2,7 @@ import type {shopEntries} from "../../data/interfaces.ts";
 import {Auto, AutoSpeed, MoveSpeed, Multi, Power, ProcessSpeed} from "../../data/shop.ts";
 import type {ResourceType, shopEntry, ShopItem} from "../../data/types.ts";
 
+// List of shop entries with its name, currency and price, acordingly to the ShopEntries interface
 const shopItems: shopEntries[] = [
     {name: "Multi", currency: "Balance", price: (50 * Multi)},
     {name: "Power", currency: "Balance", price: (50 * Power)},
@@ -11,15 +12,16 @@ const shopItems: shopEntries[] = [
     {name: "AutoSpeed", currency: "Gears", price: (50 * (AutoSpeed / 2))},
 ];
 
+// Gets the entries
 export function getShopEntries() {
     for (let i = 0; i < shopItems.length; i++) {
         displayShopElement(shopItems[i])
     }
-    console.log(shopItems.length);
 }
 
 //TODO: Make the shop prices update on click/buy
 
+// Display the shop
 function displayShopElement(array: shopEntry) {
     const shopDiv = document.getElementById('shopDiv')
 
@@ -34,6 +36,7 @@ function displayShopElement(array: shopEntry) {
 
 }
 
+// Create elements for shop to display
 function createTheShopElement(array: shopEntry): HTMLElement {
     const arrayName = array.name as ShopItem
     const arrayCurrency = array.currency as ResourceType
