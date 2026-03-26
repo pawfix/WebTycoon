@@ -3,18 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tycoon</title>
-    <script type="module" crossorigin src="./assets/index-EcyF0VkQ.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DwZ00C9e.css">
+    <title>Tycoon</title>
+    <script type="module" crossorigin src="./assets/index-Bujb1fTf.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Cc3NPz5r.css">
   </head>
   <body>
   <div class="main">
+    <div class="ui">
+      <div class="bottom-grass"></div>
+      <div class="treeTrunk trunk1"></div>
+      <div class="treeTrunk trunk2"></div>
+      <div class="treeLeaves leaves1"></div>
+      <div class="treeLeaves leaves2"></div>
+    </div>
     <header>
-
       <h1>Tycoon</h1>
       <p>Balance: <span id="userBalanceDisplay">0</span></p>
       <p>Gears: <span id="userGridDisplay">0</span></p>
       <p>In queue: <span id="queueWaiting">0</span></p>
+      <button type="button" id="queueButton">Queue Waiting</button>
+      <button id="loadSaveButton">Load Save</button>
+      <button id="saveSaveButton">Save Data</button>
     </header>
     <div class="line">
       <div class="collector" id="collector"></div>
@@ -23,7 +32,8 @@
     <div class="shop" id="shopDiv">
       <h1>Shop</h1>
     </div>
-    <button type="button" id="tempButton" >Queue Waiting</button>
-  </div>
+
+
+  </div>
   </body>
 </html>
