@@ -9,13 +9,12 @@ const shopItems: shopEntries[] = [
     {name: "Auto", currency: "Gears", price: () => 50 * ((Auto + 1) * 2)},
     {name: "MoveSpeed", currency: "Balance", price: () => {
             const base = 50;
-            const level = Math.round((5 - MoveSpeed) / 0.25);
-
+            const level = Math.round((10 - MoveSpeed) / 0.25);
             return Math.round(base * Math.pow(1.5, level));
         }},
     {name: "ProcessSpeed", currency: "Balance", price: () => {
             const base = 50;
-            const level = Math.round((4 - ProcessSpeed) / 0.25);
+            const level = Math.round((10 - ProcessSpeed) / 0.25);
 
             return Math.round(base * Math.pow(1.5, level));
         }},

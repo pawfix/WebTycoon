@@ -10,8 +10,8 @@ export let Multi: number = 1;
 export let Power: number = 1;
 export let Auto: number = 0;
 export let AutoSpeed:number = 10
-export let MoveSpeed: number = 5;
-export let ProcessSpeed: number = 4;
+export let MoveSpeed: number = 10;
+export let ProcessSpeed: number = 10;
 
 
 // Apply the changes to the items

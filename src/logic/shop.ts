@@ -1,7 +1,7 @@
 import "../data/cash.ts"
 import {trySpend} from "../data/cash.ts";
 import "../data/shop.ts"
-import {applyBuyItemItem} from "../data/shop.ts";
+import {applyBuyItemItem, Auto, AutoSpeed, MoveSpeed, Power, ProcessSpeed} from "../data/shop.ts";
 import {isResourceType, isShopItem, type ResourceType, type ShopItem} from "../data/types.ts";
 import {updateShopEntries} from "../ui/layout/shop.ts";
 
@@ -58,6 +58,11 @@ function tryToBuyItem(element:HTMLElement) {
 }
 
 function buyItem(item: ShopItem, price: number, currency: ResourceType): boolean {
+    if (!isNotMaxAmount(item)) {
+        console.log(`You have max amount of ${item}`)
+        return false;
+    }
+
     if (!trySpend(price, currency)) {
         console.log(`Too poor to buy ${item} for ${price} of ${currency}`);
         return false;
@@ -66,4 +71,25 @@ function buyItem(item: ShopItem, price: number, currency: ResourceType): boolean
     applyBuyItemItem(item);
     console.log(`Bought ${item} for ${price} of ${currency}`);
     return true;
+}
+
+function isNotMaxAmount(item:ShopItem):boolean {
+    console.log(`trying ${item}`)
+    switch (item) {
+        case "Auto":
+            return Auto <= 2;
+        case "Power":
+            console.log(`trying ${item}`)
+            return Power <= 500;
+        case "MoveSpeed":
+            return MoveSpeed >= .25;
+        case "AutoSpeed":
+            return AutoSpeed >= 0.5;
+        case "ProcessSpeed":
+            return ProcessSpeed >= 0.25;
+        case "Multi":
+            return true;
+        default:
+            return false;
+    }
 }
