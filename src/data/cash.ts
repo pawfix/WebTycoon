@@ -1,5 +1,4 @@
 import {updateDisplayValue} from "../ui/display.ts";
-import "./shop.ts"
 import {Multi} from "./shop.ts";
 import type {ResourceType} from "./types.ts";
 

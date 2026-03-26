@@ -2,14 +2,14 @@ import type {shopEntries} from "../../data/interfaces.ts";
 import {Auto, AutoSpeed, MoveSpeed, Multi, Power, ProcessSpeed} from "../../data/shop.ts";
 import type {ResourceType,  ShopItem} from "../../data/types.ts";
 
-// List of shop entries with its name, currency and price, acordingly to the ShopEntries interface
+// List of shop entries with its name, currency and price, accordingly to the ShopEntries interface
 const shopItems: shopEntries[] = [
     {name: "Multi", currency: "Balance", price: () => 50 * Multi},
     {name: "Power", currency: "Balance", price: () => 50 * Power},
     {name: "Auto", currency: "Gears", price: () => 50 * ((Auto + 1) * 2)},
-    {name: "MoveSpeed", currency: "Balance", price: () => 50 * (MoveSpeed / 2)},
-    {name: "ProcessSpeed", currency: "Balance", price: () => 50 * (ProcessSpeed / 2)},
-    {name: "AutoSpeed", currency: "Gears", price: () => 50 * (AutoSpeed / 2)},
+    {name: "MoveSpeed", currency: "Balance", price: () => 50 * ((5 / MoveSpeed) * 2)},
+    {name: "ProcessSpeed", currency: "Balance", price: () => 50 * ((4 / ProcessSpeed) * 2)},
+    {name: "AutoSpeed", currency: "Gears", price: () => 50 * ((10 / AutoSpeed) * 2)},
 ];
 
 // Gets the entries
