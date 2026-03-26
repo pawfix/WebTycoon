@@ -7,9 +7,24 @@ const shopItems: shopEntries[] = [
     {name: "Multi", currency: "Balance", price: () => 50 * Multi},
     {name: "Power", currency: "Balance", price: () => 50 * Power},
     {name: "Auto", currency: "Gears", price: () => 50 * ((Auto + 1) * 2)},
-    {name: "MoveSpeed", currency: "Balance", price: () => 50 * ((5 / MoveSpeed) * 2)},
-    {name: "ProcessSpeed", currency: "Balance", price: () => 50 * ((4 / ProcessSpeed) * 2)},
-    {name: "AutoSpeed", currency: "Gears", price: () => 50 * ((10 / AutoSpeed) * 2)},
+    {name: "MoveSpeed", currency: "Balance", price: () => {
+            const base = 50;
+            const level = Math.round((5 - MoveSpeed) / 0.25);
+
+            return Math.round(base * Math.pow(1.5, level));
+        }},
+    {name: "ProcessSpeed", currency: "Balance", price: () => {
+            const base = 50;
+            const level = Math.round((4 - ProcessSpeed) / 0.25);
+
+            return Math.round(base * Math.pow(1.5, level));
+        }},
+    {name: "AutoSpeed", currency: "Gears", price: () => {
+            const base = 50;
+            const level = Math.round((10 - AutoSpeed) / 0.25);
+
+            return Math.round(base * Math.pow(1.5, level));
+        }},
 ];
 
 // Gets the entries
