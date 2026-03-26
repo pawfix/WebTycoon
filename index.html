@@ -8,12 +8,19 @@
   </head>
   <body>
   <div class="main">
+    <div class="ui">
+      <div class="bottom-grass"></div>
+      <div class="treeTrunk trunk1"></div>
+      <div class="treeTrunk trunk2"></div>
+      <div class="treeLeaves leaves1"></div>
+      <div class="treeLeaves leaves2"></div>
+    </div>
     <header>
-
       <h1>Tycoon</h1>
       <p>Balance: <span id="userBalanceDisplay">0</span></p>
       <p>Gears: <span id="userGridDisplay">0</span></p>
       <p>In queue: <span id="queueWaiting">0</span></p>
+      <button type="button" id="tempButton" >Queue Waiting</button>
     </header>
     <div class="line">
       <div class="collector" id="collector"></div>
@@ -22,7 +29,8 @@
     <div class="shop" id="shopDiv">
       <h1>Shop</h1>
     </div>
-    <button type="button" id="tempButton" >Queue Waiting</button>
+
+
   </div>
     <script type="module" src="/src/index.ts"></script>
   <script type="module" src="/src/logic/shop.ts"></script>

@@ -5,11 +5,6 @@
 
 export type ResourceType = "Gears" | "Balance" // Type for cash related values
 export type ShopItem = "Multi" | "Auto" | "Power" | "Speed" | "MoveSpeed" | "ProcessSpeed" | "AutoSpeed"; // Type for shop items
-export type shopEntry ={ // Format for a shop entry
-    name: ShopItem,
-    currency: ResourceType,
-    price: number,
-}
 
 // Check for data if it's a type of resource, and set it as ResourceType
 export function isResourceType(value: string): value is ResourceType {

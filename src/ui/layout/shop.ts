@@ -71,11 +71,11 @@ function createTheShopElement(array: shopEntries, number: number): HTMLElement {
     element.tabIndex = 1
 
     const name: HTMLElement = document.createElement("p")
-    name.textContent = `Buy: ${array.name}`;
+    name.textContent = array.name;
 
 
     const price = document.createElement("p")
-    price.textContent = `For: ${arrayPrice}`;
+    price.textContent = `$${arrayPrice}`;
 
     element.appendChild(price);
     element.appendChild(name)

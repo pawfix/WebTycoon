@@ -85,7 +85,7 @@ function createTheBlock(): HTMLElement {
     return block;
 }
 
-// Create a type for the block by geting a number 0 - 100
+// Create a type for the block by getting a number 0 - 100
 function createBlockType(): number {
     return Math.floor(Math.random() * 100 + 1);
 }

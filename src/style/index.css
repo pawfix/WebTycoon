@@ -7,6 +7,7 @@ body {
   margin: auto;
   height: 100vh;
   overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
 }
 
 header {
@@ -15,6 +16,8 @@ header {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 2;
+  position: relative;
 }
 
 .main {
@@ -23,27 +26,42 @@ header {
   min-height: 720px;
   width: 1280px;
   min-width: 1280px;
-  background-color: white;
+  background: linear-gradient(145deg, #f9f9f9, #e0e0e0);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 .main div.shop {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 10%;
+  top: 0;
+  right: 0;
+  width: 16%;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  padding: 10px;
   border-radius: 15px;
+  z-index: 10;
+}
+.main div.shop h1 {
+  margin: 0;
 }
 .main div.shop div {
+  cursor: pointer;
   color: white;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(54, 84, 1, 0.6);
   text-align: left;
   font-size: 0.75rem;
+  width: 50%;
   padding: 2px;
-  border: 5px solid black;
+  border: 3px solid black;
   border-radius: 10px;
+  margin: 5px auto;
   height: auto;
+  transition: transform 0.2s ease-out;
+}
+.main div.shop div:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in;
+}
+.main div.shop div p {
+  text-align: center;
+  margin: 5px;
 }
 .main .line {
   display: flex;
@@ -53,9 +71,9 @@ header {
   position: absolute;
   top: 85%;
   left: 5%;
+  z-index: 5;
 }
 .main .line .loader {
-  background-color: yellow;
   height: 100%;
   width: 1152px;
 }
@@ -66,10 +84,70 @@ header {
   position: relative;
   border-radius: 15px;
 }
+.main .line .loader {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  background: yellow repeating-linear-gradient(90deg, #000 0 5%, #555 5% 10%);
+  background-size: 400px 100%;
+  animation: conveyor-slide 4s linear infinite;
+}
+@keyframes conveyor-slide {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -400px 0;
+  }
+}
 .main .line .collector {
   width: 72px;
   height: 72px;
   background-color: orange;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+div.ui {
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+div.ui .bottom-grass {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  background-color: green;
+}
+div.ui div.treeTrunk {
+  background-color: #7b4f2f;
+  width: 7%;
+  height: 30%;
+  position: absolute;
+  bottom: 20%;
+}
+div.ui div.treeTrunk.trunk1 {
+  right: 4%;
+}
+div.ui div.treeTrunk.trunk2 {
+  left: 4%;
+}
+div.ui div.treeLeaves {
+  position: absolute;
+  top: 0;
+  background: radial-gradient(circle at top, #2ca02c, #0f4a0f);
+  width: 16%;
+  height: 60%;
+}
+div.ui div.treeLeaves.leaves1 {
+  right: 0;
+}
+div.ui div.treeLeaves.leaves2 {
+  left: 0;
 }
 
 @keyframes moveLeft {
@@ -85,13 +163,13 @@ header {
     background-color: rgba(245, 10, 10, 0.5);
   }
   50% {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(54, 84, 1, 0.6);
   }
   75% {
     background-color: rgba(245, 10, 10, 0.5);
   }
   100% {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(54, 84, 1, 0.6);
   }
 }
 
