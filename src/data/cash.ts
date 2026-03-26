@@ -10,7 +10,7 @@ Also contains checks
 */
 
 // User balance and gear amount. Used in shop etc
-export let balance: number = 500;
+export let balance: number = 0;
 export let gears: number = 0;
 
 // Check if user can spend.
