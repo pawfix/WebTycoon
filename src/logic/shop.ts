@@ -1,5 +1,5 @@
-import "../data/cash.ts"
-import {trySpend} from "../data/cash.ts";
+import "./cash.ts"
+import {trySpend} from "./cash.ts";
 import "../data/shop.ts"
 import {applyBuyItemItem, Auto, AutoSpeed, MoveSpeed, Power, ProcessSpeed} from "../data/shop.ts";
 import {isResourceType, isShopItem, type ResourceType, type ShopItem} from "../data/types.ts";

@@ -39,6 +39,19 @@ export function updateShopEntries(element: HTMLElement) {
     element.children[0].innerHTML = "For: " + newPrice;
     console.log("Set new price: " + newPrice)
 }
+export function updateAllShopEntries(): void {
+    const shopElements = document.querySelectorAll<HTMLElement>('.shopDiv');
+    shopElements.forEach((element) => {
+        const index = Number(element.dataset.number);
+        if (!isNaN(index) && shopItems[index]) {
+            const newPrice = shopItems[index].price();
+            element.dataset.price = String(newPrice);
+            const priceP = element.querySelector('p'); // first <p> is price
+            if (priceP) priceP.textContent = `$${newPrice}`;
+            console.log(`Updated ${shopItems[index].name} price to ${newPrice}`);
+        }
+    });
+}
 
 // Display the shop
 function displayShopElement(array: shopEntries, number: number) {

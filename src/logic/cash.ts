@@ -1,6 +1,7 @@
 import {updateDisplayValue} from "../ui/display.ts";
-import {Multi} from "./shop.ts";
-import type {ResourceType} from "./types.ts";
+import {Multi} from "../data/shop.ts";
+import type {ResourceType} from "../data/types.ts";
+import {addToLocalStorage} from "./save.ts";
 
 /*
 Here the cash related data stored.
@@ -49,9 +50,26 @@ export function addGears(value: number): void {
     updateDisplayValue("Gears")
 }
 
-/*
-export function applyBuyItemCash(value: number): void {
-    balance -= value * Multi;
-    updateDisplayValue("Balance")
+export function saveUserCash() {
+    addToLocalStorage("Balance", balance)
+    addToLocalStorage("Gears", gears)
+    console.log("Saved user cash...")
 }
-*/
+
+export function loadCash(name: ResourceType): void {
+    const value = localStorage.getItem(name);
+    if (value === null) return; // no saved value, keep default
+
+    switch (name) {
+        case "Gears":
+            gears = Number(value);
+            break;
+        case "Balance":
+            balance = Number(value);
+            break;
+    }
+
+    updateDisplayValue("Gears");
+    updateDisplayValue("Balance");
+    console.log("Loaded user cash...")
+}

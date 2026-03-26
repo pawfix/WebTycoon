@@ -1,4 +1,4 @@
-import {balance, gears} from "../data/cash.ts";
+import {balance, gears} from "../logic/cash.ts";
 import {isResourceType, type ResourceType} from "../data/types.ts";
 
 // Update the value of users cash

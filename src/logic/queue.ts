@@ -41,7 +41,7 @@ export function increaseQueue(amount: number): void {
 
 // Initialize the queue button
 export function initQueueButton(): void {
-    document.getElementById("tempButton")?.addEventListener("click", () => {
+    document.getElementById("queueButton")?.addEventListener("click", () => {
         queueWaiting += Power;
         displayQueue(queueWaiting);
         addToQueue();

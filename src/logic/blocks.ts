@@ -1,6 +1,6 @@
 import {isResourceType, type ResourceType} from "../data/types";
 import { MoveSpeed } from "../data/shop";
-import {addBalance, addGears} from "../data/cash.ts";
+import {addBalance, addGears} from "./cash.ts";
 
 /*
     Logic for the block
