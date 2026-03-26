@@ -3,12 +3,14 @@ import {trySpend} from "../data/cash.ts";
 import "../data/shop.ts"
 import {applyBuyItemItem} from "../data/shop.ts";
 import {isResourceType, isShopItem, type ResourceType, type ShopItem} from "../data/types.ts";
+import {updateShopEntries} from "../ui/layout/shop.ts";
 
 let shopDivs: NodeListOf<HTMLElement> = document.querySelectorAll('.shopDiv')
 let isPaymentProcessing: boolean = false;
 
 shopDivs.forEach((element: HTMLElement) => {
     element.addEventListener("click", () => {
+
 
         if (isPaymentProcessing) return;
 
@@ -24,6 +26,7 @@ shopDivs.forEach((element: HTMLElement) => {
 
         isPaymentProcessing = false;
 
+        updateShopEntries(element)
 
     })
 })
@@ -31,8 +34,6 @@ shopDivs.forEach((element: HTMLElement) => {
 function tryToBuyItem(element:HTMLElement) {
     const shopItem: string = element.dataset.itemtype!
     const currency = element.dataset.currency as ResourceType;
-
-    console.log(Number(element.dataset.price));
 
 
     if (!shopItem || !isShopItem(shopItem)) {
@@ -63,6 +64,6 @@ function buyItem(item: ShopItem, price: number, currency: ResourceType): boolean
     }
 
     applyBuyItemItem(item);
-    console.log("Bought " + item);
+    console.log(`Bought ${item} for ${price} of ${currency}`);
     return true;
 }

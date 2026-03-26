@@ -7,19 +7,23 @@
     <link rel="stylesheet" href=src/style/index.css>
   </head>
   <body>
-  <header>
-    <h1>Tycoon</h1>
-    <p>Balance: <span id="userBalanceDisplay">0</span></p>
-    <p>Gears: <span id="userGridDisplay">0</span></p>
-    <p>In queue: <span id="queueWaiting">0</span></p>
-    </header>
+  <div class="main">
+    <header>
 
-  <div class="shop" id="shopDiv">
-    <h1>Shop</h1>
-  </div>
+      <h1>Tycoon</h1>
+      <p>Balance: <span id="userBalanceDisplay">0</span></p>
+      <p>Gears: <span id="userGridDisplay">0</span></p>
+      <p>In queue: <span id="queueWaiting">0</span></p>
+    </header>
+    <div class="line">
+      <div class="collector" id="collector"></div>
+      <div class="loader" id="loader"></div>
+    </div>
+    <div class="shop" id="shopDiv">
+      <h1>Shop</h1>
+    </div>
     <button type="button" id="tempButton" >Queue Waiting</button>
-    <div class="collector" id="collector"></div>  
-    <div class="loader" id="loader"></div>
+  </div>
     <script type="module" src="/src/index.ts"></script>
   <script type="module" src="/src/logic/shop.ts"></script>
   </body>

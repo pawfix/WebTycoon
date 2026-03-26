@@ -25,22 +25,42 @@ export function getBlock(value: number, type: ResourceType): void {
 // Create the moving block
 export function addMovingBlock(): void {
     const loader = document.getElementById("loader");
-
-    const block = createTheBlock()
+    const block = createTheBlock();
 
     loader?.appendChild(block);
 
-    setTimeout(() => {
-        const typeRaw = block.dataset.blockType;
+    let position = 0;
+    let lastTime = performance.now();
 
-        if (!typeRaw || !isResourceType(typeRaw)) {
-            console.error("Unknown type " + typeRaw);
+    const distance = 1080; // px
+    const speedPerSecond = distance / MoveSpeed; // px per second
+
+    function move(currentTime: number) {
+        const deltaTime = (currentTime - lastTime) / 1000;
+        lastTime = currentTime;
+
+        position += speedPerSecond * deltaTime;
+
+        block.style.transform = `translateX(-${position}px)`;
+
+        if (position >= distance) {
+            const typeRaw = block.dataset.blockType;
+
+            if (!typeRaw || !isResourceType(typeRaw)) {
+                console.error("Unknown type " + typeRaw);
+                block.remove();
+                return;
+            }
+
+            getBlock(Number(block.dataset.blockValue), typeRaw);
+            block.remove();
             return;
         }
 
-        getBlock(Number(block.dataset.blockValue), typeRaw);
-        block.remove();
-    }, MoveSpeed * 1000);
+        requestAnimationFrame(move);
+    }
+
+    requestAnimationFrame(move);
 }
 
 // Create the actual block with its data and styling

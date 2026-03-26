@@ -10,7 +10,7 @@ Also contains checks
 */
 
 // User balance and gear amount. Used in shop etc
-export let balance: number = 0;
+export let balance: number = 500;
 export let gears: number = 0;
 
 // Check if user can spend.
@@ -28,7 +28,7 @@ export function trySpend(amount: number, type: ResourceType): boolean {
         case "Balance":
             if (balance >= amount) {
                 balance -= amount;
-                updateDisplayValue("Gears")
+                updateDisplayValue("Balance")
                 return true;
             }
             break;

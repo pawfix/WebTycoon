@@ -10,6 +10,6 @@ Ensures a proper format for data
 export interface shopEntries {
     name: ShopItem;
     currency: ResourceType;
-    price: number;
+    price: () => number;
 }
 
