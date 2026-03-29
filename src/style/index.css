@@ -2,6 +2,7 @@ body {
   background-color: black;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   position: relative;
   margin: auto;
@@ -20,12 +21,29 @@ header {
   position: relative;
 }
 
-.main {
+div.app {
   position: relative;
-  height: 720px;
-  min-height: 720px;
   width: 1280px;
-  min-width: 1280px;
+  height: 720px;
+  overflow: hidden;
+}
+div.app div.view {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) translateX(100%);
+  transition: transform 0.5s ease;
+}
+div.app div.view.active {
+  transform: translate(-50%, -50%) translateX(0);
+}
+div.app div.view.exit-left {
+  transform: translate(-50%, -50%) translateX(-100%);
+}
+
+.main {
   background: linear-gradient(145deg, #f9f9f9, #e0e0e0);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
@@ -75,10 +93,10 @@ header {
 }
 .main .line .loader {
   height: 100%;
-  width: 1152px;
+  width: 90%;
 }
 .main .line .loader .moving-block {
-  width: 54px;
+  width: 7.5%;
   height: 100%;
   background: red;
   position: relative;
@@ -100,8 +118,8 @@ header {
   }
 }
 .main .line .collector {
-  width: 72px;
-  height: 72px;
+  height: 100%;
+  aspect-ratio: 1/1;
   background-color: orange;
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;

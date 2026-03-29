@@ -3,6 +3,7 @@ body {
   background-color: black;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   position: relative;
   margin: auto;
@@ -21,12 +22,34 @@ header {
   position: relative;
 }
 
-.main {
+div.app {
   position: relative;
-  height: 720px;
-  min-height: 720px;
   width: 1280px;
-  min-width: 1280px;
+  height: 720px;
+  overflow: hidden;
+
+  div.view {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+
+    transform: translate(-50%, -50%) translateX(100%);
+    transition: transform 0.5s ease;
+
+
+    &.active {
+      transform: translate(-50%, -50%) translateX(0);
+    }
+
+    &.exit-left {
+      transform: translate(-50%, -50%) translateX(-100%);
+    }
+  }
+}
+
+.main {
   background: linear-gradient(145deg, #f9f9f9, #e0e0e0);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 
@@ -68,6 +91,7 @@ header {
       }
     }
   }
+
   .line {
     display: flex;
     width: 90%;
@@ -79,124 +103,127 @@ header {
     z-index: 5;
 
 
+    .loader {
+      height: 100%;
+      width: 90%;
 
-      .loader {
+      //noinspection CssUnusedSymbol
+      .moving-block {
+        width: 7.5%;
         height: 100%;
-        width: 1152px;
-
-        //noinspection CssUnusedSymbol
-        .moving-block {
-          width: 54px;
-          height: 100%;
-          background: red;
-          position: relative;
-          border-radius: 15px;
+        background: red;
+        position: relative;
+        border-radius: 15px;
 
 
-        }
-        border-top-right-radius: 12px;
-        border-bottom-right-radius: 12px;
-
-        background: yellow repeating-linear-gradient(
-                        90deg,
-                        #000 0 5%,
-                        #555 5% 10%
-        );
-        background-size: 400px 100%;
-        animation: conveyor-slide 4s linear infinite;
-
-
-        @keyframes conveyor-slide {
-          0% {
-            background-position: 0 0;
-          }
-          100% {
-            background-position: -400px 0;
-          }
-        }
       }
 
-      .collector {
-        width: 72px;
-        height: 72px;
-        background-color: orange;
-        border-top-left-radius: 12px;
-        border-bottom-left-radius: 12px;
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+
+      background: yellow repeating-linear-gradient(
+                      90deg,
+                      #000 0 5%,
+                      #555 5% 10%
+      );
+      background-size: 400px 100%;
+      animation: conveyor-slide 4s linear infinite;
+
+
+      @keyframes conveyor-slide {
+        0% {
+          background-position: 0 0;
+        }
+        100% {
+          background-position: -400px 0;
+        }
       }
+    }
+
+    .collector {
+      height: 100%;
+      aspect-ratio: 1/1;
+      background-color: orange;
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
+  }
+}
+
+div.ui {
+  width: 100%;
+  z-index: 1;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .bottom-grass {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background-color: green;
+  }
+
+  div.treeTrunk {
+    background-color: #7b4f2f;
+    width: 7%;
+    height: 30%;
+    position: absolute;
+    bottom: 20%;
+
+    &.trunk1 {
+      right: 4%;
+    }
+
+    &.trunk2 {
+      left: 4%;
     }
   }
 
-  div.ui {
-    width: 100%;
-    z-index: 1;
-    height: 100%;
+  div.treeLeaves {
     position: absolute;
     top: 0;
-    left: 0;
-    .bottom-grass {
-      position: absolute;
-      bottom: 0;
+    background: radial-gradient(circle at top, #2ca02c, #0f4a0f);
+    width: 16%;
+    height: 60%;
+
+    &.leaves1 {
+      right: 0;
+    }
+
+    &.leaves2 {
       left: 0;
-      width: 100%;
-      height: 20%;
-      background-color: green;
-    }
-    div.treeTrunk {
-      background-color: #7b4f2f;
-      width: 7%;
-      height: 30%;
-      position: absolute;
-      bottom: 20%;
-
-      &.trunk1 {
-        right: 4%;
-      }
-
-      &.trunk2 {
-        left: 4%;
-      }
-    }
-    div.treeLeaves {
-      position: absolute;
-      top: 0;
-      background: radial-gradient(circle at top, #2ca02c, #0f4a0f);
-      width: 16%;
-      height: 60%;
-
-      &.leaves1 {
-        right: 0;
-      }
-      &.leaves2 {
-        left: 0;
-      }
     }
   }
-
+}
 
 
 //noinspection CssUnusedSymbol
 
 @keyframes moveLeft {
-from {
+  from {
     transform: translateX(0);
   }
-to {
+  to {
     transform: translateX(-1080px);
   }
 }
 
 @keyframes failToBuyBlink {
-25% {
+  25% {
     background-color: rgba(245, 10, 10, 0.5);
   }
-50% {
+  50% {
     background-color: rgba(54, 84, 1, 0.6);
   }
-75% {
+  75% {
     background-color: rgba(245, 10, 10, 0.5);
   }
-100% {
-    background-color:rgba(54, 84, 1, 0.6);
+  100% {
+    background-color: rgba(54, 84, 1, 0.6);
   }
 }
 

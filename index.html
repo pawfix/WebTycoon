@@ -1,40 +1,44 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Tycoon</title>
-    <link rel="stylesheet" href=src/style/index.css>
-  </head>
-  <body>
-  <div class="main">
-    <div class="ui">
-      <div class="bottom-grass"></div>
-      <div class="treeTrunk trunk1"></div>
-      <div class="treeTrunk trunk2"></div>
-      <div class="treeLeaves leaves1"></div>
-      <div class="treeLeaves leaves2"></div>
-    </div>
-    <header>
-      <h1>Tycoon</h1>
-      <p>Balance: <span id="userBalanceDisplay">0</span></p>
-      <p>Gears: <span id="userGridDisplay">0</span></p>
-      <p>In queue: <span id="queueWaiting">0</span></p>
-      <button type="button" id="queueButton">Queue Waiting</button>
-      <button id="loadSaveButton">Load Save</button>
-      <button id="saveSaveButton">Save Data</button>
-    </header>
-    <div class="line">
-      <div class="collector" id="collector"></div>
-      <div class="loader" id="loader"></div>
-    </div>
-    <div class="shop" id="shopDiv">
-      <h1>Shop</h1>
-    </div>
+    <link href=src/style/index.css rel="stylesheet">
+</head>
+<body>
+<div class="app">
+    <div class="main view active">
+        <div class="ui">
+            <div class="bottom-grass"></div>
+            <div class="treeTrunk trunk1"></div>
+            <div class="treeTrunk trunk2"></div>
+            <div class="treeLeaves leaves1"></div>
+            <div class="treeLeaves leaves2"></div>
+        </div>
+        <header>
+            <h1>Tycoon</h1>
+            <p>Balance: <span id="userBalanceDisplay">0</span></p>
+            <p>Gears: <span id="userGridDisplay">0</span></p>
+            <p>In queue: <span id="queueWaiting">0</span></p>
+            <button id="queueButton" type="button">Queue Waiting</button>
+            <button id="loadSaveButton">Load Save</button>
+            <button id="saveSaveButton">Save Data</button>
+            <button class="window" id="goToSettings">Go to settings</button>
+        </header>
+        <div class="line">
+            <div class="collector" id="collector"></div>
+            <div class="loader" id="loader"></div>
+        </div>
+        <div class="shop" id="shopDiv">
+            <h1>Shop</h1>
+        </div>
 
 
-  </div>
-    <script type="module" src="/src/index.ts"></script>
-  <script type="module" src="/src/logic/shop.ts"></script>
-  </body>
+    </div>
+    <div class="settings view"></div>
+</div>
+<script src="/src/index.ts" type="module"></script>
+<script src="/src/logic/shop.ts" type="module"></script>
+</body>
 </html>

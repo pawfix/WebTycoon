@@ -1,4 +1,3 @@
-
 /*
     Here are custom types
  */
@@ -14,4 +13,10 @@ export function isResourceType(value: string): value is ResourceType {
 // Check if something is an item from shop, abd returns it as a Type of ShopItem
 export function isShopItem(item: string): item is ShopItem {
     return item === "Multi" || item === "Auto" || item === "Power" || item === "MoveSpeed" || item === "ProcessSpeed" || item === "AutoSpeed";
+}
+
+export type settings = {
+    resolutionX: number
+    resolutionY: number
+    background: string
 }

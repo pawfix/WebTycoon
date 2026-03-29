@@ -1,7 +1,8 @@
-import { autoAddToQuery } from "./logic/auto";
-import { initQueueButton } from "./logic/queue";
+import {autoAddToQuery} from "./logic/auto";
+import {initQueueButton} from "./logic/queue";
 import {getShopEntries} from "./ui/layout/shop.ts";
 import {initSave} from "./logic/save.ts";
+import {initWindows} from "./ui/windows/windows.ts";
 
 
 // Init the app.
@@ -15,6 +16,7 @@ function init(): void {
     autoAddToQuery();
     getShopEntries()
     initSave()
+    initWindows()
 }
 
 // Runs the init
