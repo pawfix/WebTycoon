@@ -3,6 +3,8 @@ import {initQueueButton} from "./logic/queue";
 import {getShopEntries} from "./ui/layout/shop.ts";
 import {initSave} from "./logic/save.ts";
 import {initWindows} from "./ui/windows/windows.ts";
+import setSettings, {loadSavedSettings} from "./logic/settings.ts";
+
 
 
 // Init the app.
@@ -12,11 +14,15 @@ import {initWindows} from "./ui/windows/windows.ts";
 // getShopEntries() displays the shop
 // ==============================
 function init(): void {
-    initQueueButton();
-    autoAddToQuery();
-    getShopEntries()
+    document.addEventListener("DOMContentLoaded", () => {
+        getShopEntries()
+        initQueueButton();
+        autoAddToQuery();
+        initWindows()
+        setSettings()
+        loadSavedSettings()
     initSave()
-    initWindows()
+    })
 }
 
 // Runs the init

@@ -1,5 +1,4 @@
 body {
-  background-color: black;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -96,7 +95,7 @@ div.app div.view.exit-left {
   width: 90%;
 }
 .main .line .loader .moving-block {
-  width: 7.5%;
+  width: 5.5%;
   height: 100%;
   background: red;
   position: relative;

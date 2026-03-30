@@ -16,7 +16,24 @@ export function isShopItem(item: string): item is ShopItem {
 }
 
 export type settings = {
-    resolutionX: number
-    resolutionY: number
-    background: string
+    resolutionX: resolutionX
+    resolutionY: resolutionY
+    background: background
 }
+
+
+export type BlockData = {
+    element: HTMLElement;
+    position: number;
+    value: number;
+    type: ResourceType;
+};
+
+export const resolutionXValues = [1280, 1920, 2560, 3840] as const;
+export const resolutionYValues = [720, 1080, 1440, 2160] as const;
+export const backgroundValues = ["rgb(0, 0, 0)", "rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)", "rgb(255, 255, 255)", "rgb(172, 165, 5)"] as const;
+
+export type resolutionX = typeof resolutionXValues[number];
+export type resolutionY = typeof resolutionYValues[number];
+
+export type background = typeof backgroundValues[number];
