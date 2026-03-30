@@ -1,4 +1,4 @@
-import type {settings} from "../data/types.ts";
+import {type settings} from "../data/types.ts";
 
 let settings: settings = {
     resolutionX: 1280,
@@ -12,15 +12,28 @@ export function getSettings(): settings {
 }
 
 export function loadSavedSettings() {
-    let localSettings: settings | null = localStorage.settings;
-    if (localSettings === null || localSettings === undefined || !localSettings) {
-        return;
+    const raw = localStorage.getItem("settings")
+
+    if (!raw) return
+
+    console.log("Loading settings")
+
+    try {
+        const data = JSON.parse(raw)
+
+        const settings: settings = {
+            resolutionX: Number(data.resolutionX) || 1280,
+            resolutionY: Number(data.resolutionY) || 720,
+            background: typeof data.background === "string" ? data.background : "black"
+        }
+
+        applySettings(settings)
+    } catch (error) {
+        console.error("Invalid settings in localStorage", error)
     }
-    console.log("Loading settings");
-    applySettings(localSettings);
 }
 
-function setSettings(newSettings? : settings) {
+function setSettings(newSettings?: settings) {
     //const app = document.querySelector(".app") as HTMLElement;
     let localSettings: settings | null = localStorage.settings;
 
@@ -43,22 +56,37 @@ function setSettings(newSettings? : settings) {
 
 export default setSettings
 
-function applySettings(newSettings : settings):boolean {
-    console.log(newSettings);
-    const app:HTMLElement | null = document.querySelector(".app")
-    const body = document.body as HTMLElement
+function applySettings(newSettings: settings): boolean {
+    console.log("ARG:", newSettings)
 
-    if (!app) return false
+    console.log(Object.keys(newSettings))
+    console.log(Object.getOwnPropertyDescriptors(newSettings))
 
-    try{
-            app.style.width = `${newSettings.resolutionX}px`;
-            app.style.height = `${newSettings.resolutionY}px`;
-            body.style.backgroundColor = newSettings.background;
-    } catch (error) {
-        console.log(error)
-        return false;
+    if (!newSettings) {
+        console.error("newSettings is UNDEFINED")
+        return false
     }
 
-    console.log(newSettings);
+    if (
+        newSettings.resolutionX === undefined ||
+        newSettings.resolutionY === undefined ||
+        newSettings.background === undefined
+    ) {
+        console.error("Missing values:", newSettings)
+        return false
+    }
+
+    const root: HTMLElement = document.documentElement;
+
+    const width = newSettings.resolutionX
+    const height = newSettings.resolutionY
+    const bg = newSettings.background
+
+    console.log("VALUES:", width, height, bg)
+
+    root.style.setProperty('--app-height', `${height}px`)
+    root.style.setProperty('--app-width', `${width}px`)
+    root.style.setProperty('--background-color', bg)
+
     return true
 }

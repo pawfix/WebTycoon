@@ -1,5 +1,12 @@
+:root {
+  --background-color: black;
+  --app-width: 1280px;
+  --app-height: 720px;
+}
+
 
 body {
+  background-color: var(--background-color);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -23,8 +30,8 @@ header {
 
 div.app {
   position: relative;
-  width: 1280px;
-  height: 720px;
+  width: var(--app-width);
+  height: var(--app-height);
   overflow: hidden;
 
   div.view {

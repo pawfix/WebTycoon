@@ -24,7 +24,7 @@ function createMainBox(): HTMLElement {
 
 function displaySettings(): HTMLElement {
     const settings = Object.entries(getSettings())
-    const wrapper:HTMLElement = document.createElement("div")
+    const wrapper: HTMLElement = document.createElement("div")
     settings.forEach(([key]) => {
         wrapper.appendChild(createSetting(key))
     });
@@ -62,6 +62,8 @@ function createSetting(name: string): HTMLElement {
     select.id = name
     select.name = name
 
+    const currentSettings = getSettings()
+
     let options: readonly (number | string)[];
 
     switch (name) {
@@ -84,6 +86,10 @@ function createSetting(name: string): HTMLElement {
         option.innerText = String(value)
         option.value = String(value)
 
+        if (String(currentSettings[name as keyof settings]) === String(value)) {
+            option.selected = true
+        }
+
         select.appendChild(option)
     }
 
@@ -99,9 +105,9 @@ function createSetting(name: string): HTMLElement {
 }
 
 function sendSetSettings(): void {
-    const resolutionX:HTMLSelectElement | null = document.querySelector("#resolutionX")
-    const resolutionY:HTMLSelectElement | null = document.querySelector("#resolutionY")
-    const background:HTMLSelectElement | null = document.querySelector("#background")
+    const resolutionX: HTMLSelectElement | null = document.querySelector("#resolutionX")
+    const resolutionY: HTMLSelectElement | null = document.querySelector("#resolutionY")
+    const background: HTMLSelectElement | null = document.querySelector("#background")
 
     const settings = {
         resolutionX: Number(resolutionX?.value),
