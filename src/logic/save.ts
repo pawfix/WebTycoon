@@ -13,7 +13,6 @@ export function initSave(): void {
     saveSaveButton?.addEventListener('click', () => {
         saveUserCash()
         saveUserShop()
-        console.log("test")
     })
 }
 

@@ -5,10 +5,9 @@ import {applyBuyItemItem, Auto, AutoSpeed, MoveSpeed, Power, ProcessSpeed} from 
 import {isResourceType, isShopItem, type ResourceType, type ShopItem} from "../data/types.ts";
 import {updateShopEntries} from "../ui/layout/shop.ts";
 
-let shopDivs: NodeListOf<HTMLElement> = document.querySelectorAll('.shopDiv')
 let isPaymentProcessing: boolean = false;
 
-shopDivs.forEach((element: HTMLElement) => {
+export function addShopListener(element: HTMLElement): void {
     element.addEventListener("click", () => {
 
 
@@ -29,9 +28,9 @@ shopDivs.forEach((element: HTMLElement) => {
         updateShopEntries(element)
 
     })
-})
+}
 
-function tryToBuyItem(element:HTMLElement) {
+function tryToBuyItem(element: HTMLElement) {
     const shopItem: string = element.dataset.itemtype!
     const currency = element.dataset.currency as ResourceType;
 
@@ -44,7 +43,6 @@ function tryToBuyItem(element:HTMLElement) {
         console.error("Wrong currency: " + currency);
         return;
     }
-
 
 
     if (buyItem(shopItem, Number(element.dataset.price!), currency)) {
@@ -73,7 +71,7 @@ function buyItem(item: ShopItem, price: number, currency: ResourceType): boolean
     return true;
 }
 
-function isNotMaxAmount(item:ShopItem):boolean {
+function isNotMaxAmount(item: ShopItem): boolean {
     console.log(`trying ${item}`)
     switch (item) {
         case "Auto":

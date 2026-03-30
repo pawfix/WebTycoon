@@ -1,29 +1,36 @@
 import type {shopEntries} from "../../data/interfaces.ts";
 import {Auto, AutoSpeed, MoveSpeed, Multi, Power, ProcessSpeed} from "../../data/shop.ts";
-import type {ResourceType,  ShopItem} from "../../data/types.ts";
+import type {ResourceType, ShopItem} from "../../data/types.ts";
+import {addShopListener} from "../../logic/shop.ts";
 
 // List of shop entries with its name, currency and price, accordingly to the ShopEntries interface
 const shopItems: shopEntries[] = [
     {name: "Multi", currency: "Balance", price: () => 50 * Multi},
     {name: "Power", currency: "Balance", price: () => 50 * Power},
     {name: "Auto", currency: "Gears", price: () => 50 * ((Auto + 1) * 2)},
-    {name: "MoveSpeed", currency: "Balance", price: () => {
+    {
+        name: "MoveSpeed", currency: "Balance", price: () => {
             const base = 50;
             const level = Math.round((10 - MoveSpeed) / 0.25);
             return Math.round(base * Math.pow(1.5, level));
-        }},
-    {name: "ProcessSpeed", currency: "Balance", price: () => {
+        }
+    },
+    {
+        name: "ProcessSpeed", currency: "Balance", price: () => {
             const base = 50;
             const level = Math.round((10 - ProcessSpeed) / 0.25);
 
             return Math.round(base * Math.pow(1.5, level));
-        }},
-    {name: "AutoSpeed", currency: "Gears", price: () => {
+        }
+    },
+    {
+        name: "AutoSpeed", currency: "Gears", price: () => {
             const base = 50;
             const level = Math.round((10 - AutoSpeed) / 0.25);
 
             return Math.round(base * Math.pow(1.5, level));
-        }},
+        }
+    },
 ];
 
 // Gets the entries
@@ -39,6 +46,7 @@ export function updateShopEntries(element: HTMLElement) {
     element.children[0].innerHTML = "For: " + newPrice;
     console.log("Set new price: " + newPrice)
 }
+
 export function updateAllShopEntries(): void {
     const shopElements = document.querySelectorAll<HTMLElement>('.shopDiv');
     shopElements.forEach((element) => {
@@ -65,7 +73,6 @@ function displayShopElement(array: shopEntries, number: number) {
 
 
     shopDiv?.appendChild(createTheShopElement(array, number))
-
 }
 
 // Create elements for shop to display
@@ -92,6 +99,8 @@ function createTheShopElement(array: shopEntries, number: number): HTMLElement {
 
     element.appendChild(price);
     element.appendChild(name)
+
+    addShopListener(element);
 
     return element;
 }

@@ -2,7 +2,6 @@ import {createSettings} from "./settings.ts";
 
 export function initWindows(): void {
     document.querySelectorAll(".window").forEach(v => {
-        console.log(v)
         v.addEventListener("click", () => {
             goToView(v.id)
         })
@@ -13,7 +12,6 @@ export function initWindows(): void {
 
 export function goToView(target: string): void {
 
-    console.log(target)
     const views: NodeListOf<Element> = document.querySelectorAll(".view")
 
     views.forEach(v => {

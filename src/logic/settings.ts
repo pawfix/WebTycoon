@@ -57,10 +57,6 @@ function setSettings(newSettings?: settings) {
 export default setSettings
 
 function applySettings(newSettings: settings): boolean {
-    console.log("ARG:", newSettings)
-
-    console.log(Object.keys(newSettings))
-    console.log(Object.getOwnPropertyDescriptors(newSettings))
 
     if (!newSettings) {
         console.error("newSettings is UNDEFINED")
@@ -82,7 +78,6 @@ function applySettings(newSettings: settings): boolean {
     const height = newSettings.resolutionY
     const bg = newSettings.background
 
-    console.log("VALUES:", width, height, bg)
 
     root.style.setProperty('--app-height', `${height}px`)
     root.style.setProperty('--app-width', `${width}px`)
