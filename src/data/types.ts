@@ -31,7 +31,7 @@ export type BlockData = {
 
 export const resolutionXValues = [1280, 1920, 2560, 3840] as const;
 export const resolutionYValues = [720, 1080, 1440, 2160] as const;
-export const backgroundValues = ["rgb(0, 0, 0)", "rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)", "rgb(255, 255, 255)", "rgb(172, 165, 5)"] as const;
+export const backgroundValues = ["rgb(0, 0, 0)", "rgb(255, 0, 0)", "rgb(0, 255, 0)", "rgb(0, 0, 255)", "rgb(255, 255, 255)", "rgb(172, 165, 5)", "rgb(180, 190, 254)", "rgb(245, 145 ,45)", "rgb(243, 139, 168)", "rgb(24, 24, 37)", "rgb(30, 30, 46)"] as const;
 
 export type resolutionX = typeof resolutionXValues[number];
 export type resolutionY = typeof resolutionYValues[number];
